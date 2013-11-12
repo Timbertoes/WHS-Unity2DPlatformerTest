@@ -24,6 +24,8 @@ public class Hero:MonoBehaviour
 	void Start()
 	{
 		controller = GetComponent<CharacterController>();
+		
+		Debug.Log("MonoDevelop commit?");
 	}
 	
 	void Update ()
