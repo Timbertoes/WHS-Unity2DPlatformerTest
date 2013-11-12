@@ -56,12 +56,17 @@ public class Hero:MonoBehaviour
 		
 		// Move the controller
 		controller.Move(moveDirection * Time.deltaTime);
-		
-		// Detect change in position
-		if(Mathf.Abs(controller.transform.position.y - lastFramePosition.y) < 0.01f)
+
+		// Only when moving upward
+		if(moveDirection.y > 0.0f)
 		{
-			// difference in Y is < Epsilon
-			moveDirection.y = 0.0f;
+			// Detect change in position
+			if(Mathf.Abs(controller.transform.position.y - lastFramePosition.y) < 0.01f)
+			{
+				// difference in Y is < Epsilon
+				Debug.Log("Remvoe Y"+Random.Range(0,99));
+				moveDirection.y = 0.0f;
+			}
 		}
 		
 		lastFramePosition = controller.transform.position;
