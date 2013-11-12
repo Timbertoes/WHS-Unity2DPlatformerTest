@@ -21,11 +21,11 @@ public class Hero:MonoBehaviour
 	private Vector3 moveDirection = Vector3.zero;
 	private CharacterController controller;
 	
+	private Vector3 lastFramePosition = Vector3.zero; // Just experimenting
+	
 	void Start()
 	{
 		controller = GetComponent<CharacterController>();
-		
-		Debug.Log("MonoDevelop commit?");
 	}
 	
 	void Update ()
@@ -56,6 +56,14 @@ public class Hero:MonoBehaviour
 		
 		// Move the controller
 		controller.Move(moveDirection * Time.deltaTime);
-	
+		
+		// Detect change in position
+		if(Mathf.Abs(controller.transform.position.y - lastFramePosition.y) < 0.01f)
+		{
+			// difference in Y is < Epsilon
+			moveDirection.y = 0.0f;
+		}
+		
+		lastFramePosition = controller.transform.position;
 	}
 }
